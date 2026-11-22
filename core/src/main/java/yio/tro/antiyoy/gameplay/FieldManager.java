@@ -1988,7 +1988,7 @@ public class FieldManager implements EncodeableYio {
     }
 
 
-    private void markPortRange(Hex portHex, boolean value) {
+    public  void markPortRange(Hex portHex, boolean value) {
         for (int i = 0; i < 6; i++) {
             Hex adjHex = portHex.getAdjacentHex(i);
             if (adjHex == null || adjHex.isNullHex()) continue;
@@ -1997,6 +1997,21 @@ public class FieldManager implements EncodeableYio {
             adjHex.portOwnerFraction = value ? portHex.fraction : -1;
         }
     }
+
+
+    public void refreshAllPortsRange() {
+    for (Hex hex : activeHexes) {
+        if (hex.sea) {
+            hex.inPortRange = false;
+            hex.portOwnerFraction = -1;
+        }
+    }
+    for (Hex hex : activeHexes) {
+        if (!hex.sea && hex.objectInside == Obj.PORT) {
+            markPortRange(hex, true);
+        }
+    }
+}
 
 
     public boolean buildTree(Province province, Hex hex) {

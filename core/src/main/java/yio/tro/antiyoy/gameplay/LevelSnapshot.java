@@ -187,6 +187,8 @@ public class LevelSnapshot {
 
         gameController.addAnimHex(gameController.fieldManager.field[0][0]);
         gameController.updateWholeCache = true;
+
+        gameController.fieldManager.refreshAllPortsRange();
     }
 
 

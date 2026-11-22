@@ -102,6 +102,20 @@ public class MoveZoneDetection {
 
         for (int dir = 0; dir < 6; dir++) {
             adjHex = tempHex.getAdjacentHex(dir);
+            
+            // // debug
+            // if (adjHex.index1 == 69 && adjHex.index2 == 32) {
+            //         System.out.println("Debug: special adjHex is founded.");
+            //     }
+            // 【临时调试断点代码】当检测到周围有海格子时，停下来看它的属性！
+            for (int i = 0; i < 6; i++) {
+                Hex checkHex = tempHex.getAdjacentHex(i);
+                if (checkHex != null && checkHex.active && checkHex.isSea()) {
+                    // 在下面这一行左边点出红点断点：
+                    int debugStop = 1; 
+                }
+            }
+
             if (!adjHex.active) continue;
             if (adjHex.isSea()) {
                 if (tempHex.isSea()) {
